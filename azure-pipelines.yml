@@ -18,3 +18,8 @@ steps:
 - script: |
     npm install express
   displayName: 'npm install express'
+
+- script: 
+    pwd
+    node app.js
+  displayName: 'start!!'
