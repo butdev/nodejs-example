@@ -7,19 +7,19 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest' #OS Image
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
+# Install tools
 - script: |
-    npm install express
+    npm install --save express
   displayName: 'npm install express'
 
-- script: 
-    pwd
-    node app.js
-  displayName: 'start!!'
+- script: |
+    npm run start
+  displayName: 'start'
