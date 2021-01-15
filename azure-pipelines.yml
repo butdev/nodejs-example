@@ -10,13 +10,14 @@ pool:
 
 variables:
   imageName: 'dockerjb8/docker-web-app'
+  versionTag: '0.1'
 
 steps:
 - task: Docker@2
   displayName: Build an image
   inputs:
     repository: $(imageName)
-    tags: test1
+    tags: $(versionTag)
     command: build
     Dockerfile: docker-web-app/Dockerfile
 
@@ -27,4 +28,4 @@ steps:
     repository: $(imageName)
     command: push
     tags: |
-      test1
+      $(versionTag)
