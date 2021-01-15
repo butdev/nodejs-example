@@ -1,43 +1,22 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+jobs:
+- job: A1
+  steps:
+  - bash: echo "A1"
 
-trigger:
-- main
-
-resources:
-- repo: self
-
-variables:
-  tag: '$(Build.BuildId)'
+- job: A2
+  steps:
+  - bash: echo "A2"
+- job: B1
+  steps:
+  - bash: echo "B1"
 
 stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/dockerfile'
-        tags: |
-          $(tag)
-
-- stage: deploy
+- stage: A
   jobs:
-  - deployment: DeployWeb
-    displayName: deploy Web App
-    pool:
-      vmImage: 'Ubuntu-latest'
-    # creates an environment if it doesn't exist
-    environment: 'smarthotel-dev'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo Hello world
+  - job: A1
+  - job: A2
+
+- stage: B
+  jobs:
+  - job: B1
+  
