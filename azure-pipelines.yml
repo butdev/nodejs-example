@@ -9,7 +9,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'dockerjb/docker-web-app'
+  imageName: 'dockerjb8/docker-web-app:test1'
 
 steps:
 - task: Docker@2
