@@ -9,13 +9,14 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'dockerjb8/docker-web-app:test1'
+  imageName: 'dockerjb8/docker-web-app'
 
 steps:
 - task: Docker@2
   displayName: Build an image
   inputs:
     repository: $(imageName)
+    tags: test1
     command: build
     Dockerfile: docker-web-app/Dockerfile
 
