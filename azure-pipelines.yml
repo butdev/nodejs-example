@@ -11,3 +11,20 @@ pool:
 variables:
   imageName: 'dockerjb/docker-web-app'
 
+steps:
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    repository: $(imageName)
+    command: build
+    Dockerfile: docker-web-app/Dockerfile
+
+- task: Docker@2
+  displayName: Push the image
+  inputs:
+    containerRegistry: |
+      $(jbDockerHubConnection)
+    repository: $(imageName)
+    command: push
+    tags: |
+      test1
